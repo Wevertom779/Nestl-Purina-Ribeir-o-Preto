@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title> Nestlé Purina Ribeirão Preto </title>
+
+  <style>
+
+    /* ======== ESTILOS GERAIS ======== */
+    body {
+      /* Imagem + overlay de cor preta com 40% de opacidade */
+      background:
+        linear-gradient(rgba(0,0,0,0.9), rgba(0,0,0,0.9)),
+
+        url('https://www.cidademarketing.com.br/marketing/wp-content/uploads/2022/12/purina_marca.png') center/cover no-repeat;
+
+      color: #ffffff;
+      font-family: "Segoe UI", Arial, sans-serif;
+      text-align: center;
+      min-height: 100vh;
+      margin: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      padding: 20px;
+    }
+    h1 { color: #ffffff; margin-bottom: 10px; font-size: 2.5rem; }
+    p  { max-width: 600px; margin: 0 auto 20px auto; font-size: 1.1rem; }
+
+    /* ======== LINKS ======== */
+    .link-btn {
+      display: block;
+      width: 280px;
+      margin: 12px auto;
+      padding: 15px;
+      background: #ff0034;
+      color: #fff;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 1.1rem;
+      border-radius: 15px;
+      box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+      transition: transform 0.15s, box-shadow 0.15s;
+    }
+    .link-btn:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+    }
+
+    /* ======== IMAGEM DO CONTEÚDO ======== */
+    .conteudo-img {
+      width: 300px;
+      border-radius: 20px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+      margin-top: 30px;
+    }
+
+    /* ======== DATA E HORA ======== */
+    .data-hora {
+      font-size: 1.2rem;
+      margin-top: 70px;
+      color: #ffffff;
+    }
+
+    /* ======== LOGIN ======== */
+    #conteudo { display: none; } /* escondido até senha correta */
+    input[type=password] {
+      padding: 10px;
+      border-radius: 8px;
+      border: none;
+      margin-bottom: 10px;
+    }
+    button {
+      padding: 10px 20px;
+      border-radius: 8px;
+      border: none;
+      background: #ff0034;
+      color: #fff;
+      font-weight: bold;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ======== TELA DE LOGIN ======== -->
+  <div id="login">
+
+    <h1> 🐶Nestlé Purina</h1>
+
+    <p>Digite a senha para entrar:</p>
+    <input type="password" id="senhaInput" placeholder="Senha">
+    <button onclick="verificarSenha()">Entrar</button>
+    <p id="erro" style="color: #ff8080;"></p>
+  </div>
+
+  <!-- ======== CONTEÚDO PROTEGIDO ======== -->
+  <div id="conteudo">
+    <h1> Gestão Power BI </h1>
+    
+    <!-- BOTÕES DE LINKS -->
+    <a class="link-btn" href="" target="_blank">📈Indicadores DOR</a>
+    <a class="link-btn" href="" target="_blank">📊Métricas GTA</a>
+    <a class="link-btn" href="" target="_blank">📉Shopflor</a>
+
+    
+    <!-- DATA E HORA -->
+    <div class="data-hora" id="dataHora"></div>
+  </div>
+
+  <script>
+    /* ======== SENHA SIMPLES ======== */
+    const senhaCorreta = ""; // troque para sua senha
+
+    function verificarSenha() {
+      const senhaDigitada = document.getElementById("senhaInput").value;
+      if (senhaDigitada === senhaCorreta) {
+        document.getElementById("login").style.display = "none";
+        document.getElementById("conteudo").style.display = "block";
+        atualizarDataHora();
+      } else {
+        document.getElementById("erro").textContent = "Senha incorreta!";
+      }
+    }
+
+    /* ======== DATA E HORA ======== */
+    function atualizarDataHora() {
+      function tick() {
+        const agora = new Date();
+        const opcoes = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+        const data = agora.toLocaleDateString('pt-BR', opcoes);
+        const hora = agora.toLocaleTimeString('pt-BR');
+        document.getElementById('dataHora').textContent =
+          `Hoje é ${data} | Hora: ${hora}`;
+      }
+      tick();
+      setInterval(tick, 1000);
+    }
+  </script>
+
+</body>
+</html>
